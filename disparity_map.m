@@ -24,7 +24,10 @@ function [D,R,T]=disparity_map(scene_path,varargin)
             imshow(I{i});
         end
     end   
-
+    
+    % read variables from calibration text file
+    %vars=readcell('calib.txt');
+   
     % use the built-in disparity map function with semi-global matching
     % method
     disparitymap1=disparitySGM(I{1},I{2});
