@@ -1,7 +1,5 @@
-% computes the disparity map for a pair of stereo images 
-
 %% define directory
- d='terrace';
+ d='images/terrace';
  s=dir(fullfile(d,'im*.png'));
  I=cell(1,2);
 
@@ -19,13 +17,6 @@ close all;
 %% convert images to grayscale
 I{1}=rgb_to_gray(I{1});
 I{2}=rgb_to_gray(I{2});
-
-%[D,R,T]=disparity_map('terrace',false);
-% ground_truth=parsePfm('terrace/disp0.pfm');
-% figure;
-% imshow(ground_truth);
-
-% P=verify_dmap(ground_truth,ground_truth);
 
 %% Harris feature-detection
 features_image1=harris_detektor(I{1},'segment_length',9,'k',0.05,'min_dist',40,'N',50,'do_plot',false);
@@ -52,4 +43,6 @@ end
 %% compute essential matrix
 K=[711.499 0 376.135;0 711.499 227.447;0 0 1];
 E=achtpunktalgorithmus(correspondences_robust,K);
-disp(E);
+
+%% compute T1,T2,R1 and R2 from essential matrix E
+[T1,R1,T2,R2,~,~]=TR_aus_E(E);
