@@ -14,20 +14,21 @@ tic;
 
 %% Disparity Map
 % Specify path to scene folder containing img0 img1 and calib
-scene_path='images/terrace';
-% scene_path='images/motorcycle';
+% scene_path='images/terrace';
+ scene_path='images/motorcycle';
 % scene_path='images/playground';
 % scene_path='images/sword';
  
 % Calculate disparity map and Euclidean motion
-[D,R,T]=disparity_map(scene_path);
+% [D,R,T]=disparity_map(scene_path);
 
 %% Validation
 % Specify path to ground truth disparity map
-gt_path='images/terrace';
+gt_path=scene_path;
 
 % Load the ground truth
-G=load(gt_path);
+G=imread(strcat(gt_path,'/disp0-n.pgm'));
+imshow(G);
 
 % Estimate the quality of the calculated disparity map
 p=validate_dmap(D,G);
