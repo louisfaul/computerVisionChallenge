@@ -1,6 +1,6 @@
 function P=verify_dmap(D,G)
-% evaluates the quality of the computed disparity map by computing the PSNR
-% of the dmap in comparison to a ground-truth dmap
+% This function calculates the PSNR of a given disparity map and the ground
+% truth. The value range of both is normalized to [0,255].
 
 % input parser
 p=inputParser;
