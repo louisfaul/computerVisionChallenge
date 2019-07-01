@@ -15,6 +15,9 @@ tic;
 %% Disparity Map
 % Specify path to scene folder containing img0 img1 and calib
 scene_path='images/terrace';
+% scene_path='images/motorcycle';
+% scene_path='images/playground';
+% scene_path='images/sword';
  
 % Calculate disparity map and Euclidean motion
 [D,R,T]=disparity_map(scene_path);
