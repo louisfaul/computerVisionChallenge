@@ -46,3 +46,6 @@ E=achtpunktalgorithmus(correspondences_robust,K);
 
 %% compute T1,T2,R1 and R2 from essential matrix E
 [T1,R1,T2,R2,~,~]=TR_aus_E(E);
+
+%% compute PSNR (test)
+P=verify_dmap(I{1},I{2});

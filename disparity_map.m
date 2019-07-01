@@ -24,8 +24,7 @@ function [D,R,T]=disparity_map(scene_path)
     end   
     
     % read variables from calibration text file
-    %vars=readcell('calib.txt');
-    K=[711.499 0 376.135;0 711.499 227.447;0 0 1];
+    K1=textscan(strcat(scene_path,'/calib.txt'),'cam0=[%f %f %f; %f %f %f; %f %f %f]');
     
     % Harris feature-detection
     features_image1=harris_detektor(I{1},'segment_length',9,'k',0.05,'min_dist',40,'N',50,'do_plot',false);
@@ -37,18 +36,6 @@ function [D,R,T]=disparity_map(scene_path)
     % find robust correspondence pairs using RANSAC
     correspondences_robust=F_ransac(correspondences,'p',0.99);
     
-%     show robust correspondence pairs
-%     figure;
-%     imshow(I{1});
-%     hold on;
-%     imshow(I{2});
-%     alpha(0.5);
-%     for i=1:size(correspondences_robust,2)
-%         plot(correspondences_robust(1,i),correspondences_robust(2,i),'r.'); % plot first point in the column
-%         plot(correspondences_robust(3,i),correspondences_robust(4,i),'b.'); % plot second point in the column
-%         plot([correspondences_robust(1,i) correspondences_robust(3,i)],[correspondences_robust(2,i) correspondences_robust(4,i)]); % connect them with a line
-%     end
-    
     % compute essential matrix
     E=achtpunktalgorithmus(correspondences_robust,K);
     
@@ -59,7 +46,7 @@ function [D,R,T]=disparity_map(scene_path)
     [T,R,~,~,~,~]=rekonstruktion(T1,T2,R1,R2,correspondences,K);
     
     % projection
-%     [repro_error,x2_repro]=rueckprojektion(correspondences,P1,I{2},T,R,K);
+%   [repro_error,x2_repro]=rueckprojektion(correspondences,P1,I{2},T,R,K);
 
     D=0;
 
