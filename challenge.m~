@@ -21,7 +21,7 @@ scene_path='images/terrace';
 
 %% Validation
 % Specify path to ground truth disparity map
-gt_path='images/terrace';
+gt_path='images/terrace/d';
 
 % Load the ground truth
 G=load(gt_path);
@@ -31,4 +31,3 @@ p=validate_dmap(D,G);
 
 %% Stop timer here
 elapsed_time=toc;
-disp(['Elapsed time in seconds : ',num2str(elpased_time),' .']);
