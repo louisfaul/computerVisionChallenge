@@ -56,7 +56,7 @@ function vars=read_variables(calib_path)
     % baseline
     vars{4}=baseline{1};
     % width
-	vars{5}=width{1};
+    vars{5}=width{1};
     % height
     vars{6}=height{1};
     % ndisp
